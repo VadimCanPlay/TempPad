@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TempPad</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #txt {
+            height: 80vh;  /* Keep a bit of space for the heading */
+            width: 100vw;
+        }
+        #content {
+            padding: 20px;
+        }
+        button {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h3>TempPad</h3> 
+    <a href="#!home">Home</a> | 
+    <a href="#!about">About</a>
+    
+    <div id="content">
+        <!-- Content will dynamically change here -->
+        <textarea id="txt" placeholder="Type something here..."></textarea>
+    </div>
+
+    <script>
+        function loadContent() {
+            const contentDiv = document.getElementById('content');
+            const hash = window.location.hash;
+
+            if (hash === '#!about') {
+                // Load the 'About' content dynamically
+                contentDiv.innerHTML = `
+                    <p>
+                        The only thing this is is just a temporary text field, so yea
+                        it may be helpful sometimes for things like documents, writing, etc.
+                        After reloading the page, everything disappears.
+                    </p>
+                    <a href="#!home"><button>Back</button></a>
+                `;
+            } else {
+                // Default 'Home' content
+                contentDiv.innerHTML = `
+                    <textarea id="txt" placeholder="Type something here..."></textarea>
+                `;
+            }
+        }
+
+        // Load content when the page loads
+        window.addEventListener('load', loadContent);
+
+        // Listen for hash changes
+        window.addEventListener('hashchange', loadContent);
+    </script>
+</body>
+</html>
